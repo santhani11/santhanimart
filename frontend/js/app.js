@@ -1,12 +1,11 @@
 // SanthaniMart Frontend
 console.log("SanthaniMart frontend loaded.");
-
 // Registration
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", function (event) {
+    registerForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -29,25 +28,61 @@ if (registerForm) {
             return;
         }
 
-        message.textContent =
-            "Registration form is valid. Backend connection will be added next.";
+        message.textContent = "Creating account...";
 
-        console.log({
-            name: name,
-            email: email,
-            password: password,
-            role: role
-        });
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        password: password,
+                        role: role
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+
+                message.textContent =
+                    "Registration successful!";
+
+                console.log("Registration successful:", data);
+
+                registerForm.reset();
+
+            } else {
+
+                message.textContent =
+                    data.message || "Registration failed.";
+
+            }
+
+        } catch (error) {
+
+            console.error("Registration error:", error);
+
+            message.textContent =
+                "Cannot connect to backend. Please start Spring Boot.";
+
+        }
     });
 }
-
 
 // Login
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", function (event) {
+    loginForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -62,12 +97,78 @@ if (loginForm) {
             return;
         }
 
-        message.textContent =
-            "Login form is valid. Backend connection will be added next.";
+        message.textContent = "Logging in...";
 
-        console.log({
-            email: email,
-            password: password
-        });
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
+
+            const data = await response.json();
+if (response.ok) {
+
+    message.textContent =
+        "Login successful! Welcome " + data.name;
+
+    console.log("Login successful:", data);
+    localStorage.setItem("loggedIn", "true");
+localStorage.setItem("userName", data.name);
+
+    setTimeout(() => {
+        window.location.href = "../index.html";
+    }, 1000);
+
+} else {
+
+    message.textContent =
+        data.message || "Invalid email or password.";
+
+}
+
+        } catch (error) {
+
+            console.error("Login error:", error);
+
+            message.textContent =
+                "Cannot connect to backend. Please start Spring Boot.";
+
+        }
     });
+}
+
+const navAuth = document.getElementById("navAuth");
+
+if (navAuth) {
+
+    const loggedIn = localStorage.getItem("loggedIn");
+    const userName = localStorage.getItem("userName");
+
+    if (loggedIn === "true") {
+
+        navAuth.innerHTML = `
+            <span>Welcome, ${userName}</span>
+            <a href="#" id="logoutBtn">Sign Out</a>
+        `;
+
+        document.getElementById("logoutBtn").addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userName");
+
+            window.location.href = "index.html";
+        });
+    }
 }
