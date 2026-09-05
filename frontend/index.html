@@ -3,63 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>SanthaniMart - Home</title>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header class="navbar">
-    <div class="logo">SanthaniMart</div>
 
-<nav>
-    <a href="index.html">Home</a>
-
-    <div id="navAuth">
-        <a href="pages/login.html">Login</a>
-        <a href="pages/register.html">Register</a>
+    <div class="logo">
+        🛒 SanthaniMart
     </div>
-</nav>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+
+        <div id="navAuth">
+            <a href="pages/login.html">Login</a>
+            <a href="pages/register.html">Register</a>
+        </div>
+    </nav>
+
 </header>
 
-<main class="hero">
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
     <div class="hero-content">
-        <h1>Welcome to SanthaniMart</h1>
-        <p>Your simple and trusted online shopping marketplace.</p>
+
+        <p class="welcome">WELCOME TO SANTHANIMART</p>
+
+        <h1>
+            Everything You Need,
+            <span>All in One Place.</span>
+        </h1>
+
+        <p>
+            Shop quality products from trusted sellers
+            at SanthaniMart.
+        </p>
 
         <div class="hero-buttons">
-            <a href="pages/login.html" class="btn">Login</a>
-            <a href="pages/register.html" class="btn secondary">Create Account</a>
-        </div>
-    </div>
-</main>
 
-<section class="features">
-    <h2>What You Can Do</h2>
+            <a href="#products" class="btn">
+                Shop Now
+            </a>
+
+            <a href="pages/register.html" class="btn secondary">
+                Join SanthaniMart
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="categories" id="categories">
+
+    <h2>Shop by Category</h2>
+
+    <p class="section-text">
+        Explore our popular categories
+    </p>
+
+    <div class="category-container">
+
+        <div class="category-card">
+            <div class="category-icon">👕</div>
+            <h3>Fashion</h3>
+            <p>Clothing & accessories</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">📱</div>
+            <h3>Electronics</h3>
+            <p>Mobiles & gadgets</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">🏠</div>
+            <h3>Home</h3>
+            <p>Home essentials</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">📚</div>
+            <h3>Books</h3>
+            <p>Books & learning</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="products" id="products">
+
+    <h2>Featured Products</h2>
+
+    <p class="section-text">
+        Discover products you may love
+    </p>
+
+    <div class="product-container">
+
+        <div class="product-card">
+
+            <div class="product-image">
+                📱
+            </div>
+
+            <h3>Smart Phone</h3>
+
+            <p class="price">₹15,999</p>
+
+            <button class="product-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <h3>Wireless Headphones</h3>
+
+            <p class="price">₹1,999</p>
+
+            <button class="product-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+                👟
+            </div>
+
+            <h3>Sports Shoes</h3>
+
+            <p class="price">₹2,499</p>
+
+            <button class="product-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🎒
+            </div>
+
+            <h3>Travel Backpack</h3>
+
+            <p class="price">₹1,299</p>
+
+            <button class="product-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+    <h2>Why SanthaniMart?</h2>
 
     <div class="feature-container">
 
         <div class="feature-card">
-            <h3>🛍️ Buyer</h3>
-            <p>Browse and purchase products from sellers.</p>
+            <h3>🛍️ Easy Shopping</h3>
+            <p>
+                Find products easily and enjoy a simple
+                shopping experience.
+            </p>
         </div>
 
         <div class="feature-card">
-            <h3>🏪 Seller</h3>
-            <p>Register and manage your products.</p>
+            <h3>🏪 Trusted Sellers</h3>
+            <p>
+                Sellers can register and manage their
+                products through the marketplace.
+            </p>
         </div>
 
         <div class="feature-card">
-            <h3>🔐 Secure Login</h3>
-            <p>Access your account using your credentials.</p>
+            <h3>🔐 Secure Account</h3>
+            <p>
+                Your account is protected through
+                secure authentication.
+            </p>
         </div>
 
     </div>
+
 </section>
 
+
+<!-- FOOTER -->
+
 <footer>
-    <p>© 2026 SanthaniMart</p>
+
+    <h3>🛒 SanthaniMart</h3>
+
+    <p>
+        Your simple and trusted online marketplace.
+    </p>
+
+    <p>
+        © 2026 SanthaniMart. All rights reserved.
+    </p>
+
 </footer>
+
+
 <script src="js/app.js"></script>
+
 </body>
 </html>
