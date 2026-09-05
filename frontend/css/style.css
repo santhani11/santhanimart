@@ -225,3 +225,275 @@ footer {
         padding: 25px;
     }
 }
+/* ================================
+   SANTHANIMART HOME PAGE
+   ================================ */
+
+/* Logo */
+
+.logo {
+    color: #6c4ab6;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation */
+
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar a {
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #6c4ab6;
+    text-decoration: none;
+}
+
+
+/* Hero */
+
+.hero {
+    min-height: 520px;
+    background: linear-gradient(135deg, #f3edff, #ffffff);
+}
+
+.welcome {
+    color: #6c4ab6;
+    font-size: 14px !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px !important;
+}
+
+.hero-content h1 {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.15;
+}
+
+.hero-content h1 span {
+    color: #6c4ab6;
+    display: block;
+}
+
+.hero-content > p:not(.welcome) {
+    color: #666;
+    line-height: 1.6;
+}
+
+
+/* Buttons */
+
+.btn {
+    background: #6c4ab6;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #57399b;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    color: #6c4ab6;
+    border-color: #6c4ab6;
+}
+
+.btn.secondary:hover {
+    background: #6c4ab6;
+    color: white;
+}
+
+
+/* Categories */
+
+.categories {
+    padding: 70px 7%;
+    text-align: center;
+    background: white;
+}
+
+.categories h2,
+.products h2,
+.about h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.section-text {
+    color: #777;
+    margin-bottom: 35px;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.category-card {
+    width: 220px;
+    padding: 30px 20px;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    background: #fafafa;
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.category-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.category-card h3 {
+    margin: 10px 0;
+}
+
+.category-card p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* Products */
+
+.products {
+    padding: 70px 7%;
+    text-align: center;
+    background: #f5f6fa;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 230px;
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3edff;
+    border-radius: 10px;
+    font-size: 65px;
+    margin-bottom: 18px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+}
+
+.price {
+    color: #6c4ab6;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product-btn {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 7px;
+    background: #6c4ab6;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product-btn:hover {
+    background: #57399b;
+}
+
+
+/* About */
+
+.about {
+    padding: 70px 7%;
+    text-align: center;
+    background: white;
+}
+
+
+/* Footer */
+
+footer {
+    background: #18151f;
+    color: white;
+    border: none;
+    padding: 40px 20px;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #ccc;
+}
+
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: 500px;
+        padding: 50px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .categories h2,
+    .products h2,
+    .about h2 {
+        font-size: 27px;
+    }
+
+    .category-card,
+    .product-card {
+        width: 100%;
+        max-width: 330px;
+    }
+
+}
