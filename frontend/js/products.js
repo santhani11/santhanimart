@@ -23,7 +23,9 @@ fetch("http://localhost:8080/api/products")
 
                     <p>Stock: ${product.stock}</p>
 
-                    <button>Add to Cart</button>
+                    <button onclick='addToCart(${JSON.stringify(product)})'>
+    Add to Cart
+</button>
 
                 </div>
             `;
@@ -35,4 +37,14 @@ fetch("http://localhost:8080/api/products")
 
         console.log(error);
     });
-    
+
+    function addToCart(product) {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push(product);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(product.name + " added to cart!");
+}

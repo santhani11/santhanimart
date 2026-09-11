@@ -497,3 +497,38 @@ footer p {
     }
 
 }
+
+/* Products Page */
+
+.products-section {
+    padding: 50px 8%;
+    text-align: center;
+}
+
+.products-section h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.products-section p {
+    color: #666;
+    margin-bottom: 35px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.product-grid .product-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.product-grid .product-card:hover {
+    transform: translateY(-5px);
+}
