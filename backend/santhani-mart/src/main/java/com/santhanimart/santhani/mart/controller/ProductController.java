@@ -47,4 +47,40 @@ public class ProductController {
         productRepository.deleteById(id);
         return "Product deleted successfully";
     }
+
+    // Decrease product stock
+@PutMapping("/{id}/decrease-stock")
+public String decreaseStock(@PathVariable Long id) {
+
+    Product product = productRepository.findById(id).orElse(null);
+
+    if (product == null) {
+        return "Product not found";
+    }
+
+    if (product.getStock() <= 0) {
+        return "Out of stock";
+    }
+
+    product.setStock(product.getStock() - 1);
+    productRepository.save(product);
+
+    return "Stock updated successfully";
+}
+
+// Increase product stock
+@PutMapping("/{id}/increase-stock")
+public String increaseStock(@PathVariable Long id) {
+
+    Product product = productRepository.findById(id).orElse(null);
+
+    if (product == null) {
+        return "Product not found";
+    }
+
+    product.setStock(product.getStock() + 1);
+    productRepository.save(product);
+
+    return "Stock increased successfully";
+}
 }

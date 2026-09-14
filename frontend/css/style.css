@@ -532,3 +532,33 @@ footer p {
 .product-grid .product-card:hover {
     transform: translateY(-5px);
 }
+
+
+    /* Categories */
+
+.categories-section {
+    padding: 50px;
+    text-align: center;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.category-card {
+    padding: 30px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-card h2 {
+    margin-bottom: 10px;
+}
+
+.category-card p {
+    color: #666;
+}
