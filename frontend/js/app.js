@@ -125,7 +125,7 @@ if (response.ok) {
     localStorage.setItem("loggedIn", "true");
 localStorage.setItem("userName", data.name);
 localStorage.setItem("userRole", data.role);
-
+localStorage.setItem("userEmail", data.email);
     setTimeout(() => {
         window.location.href = "../index.html";
     }, 1000);

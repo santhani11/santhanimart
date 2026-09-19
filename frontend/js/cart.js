@@ -158,11 +158,75 @@ function saveCart() {
     displayCart();
 }
 
+async function checkout() {
 
-function checkout() {
+    if (cart.length === 0) {
+        alert("🛒 Your cart is empty!");
+        return;
+    }
 
-    alert("Checkout feature coming soon! 🛒");
+    const loggedIn = localStorage.getItem("loggedIn");
+    const customerEmail = localStorage.getItem("userEmail");
+    const customerName = localStorage.getItem("userName");
 
+    if (loggedIn !== "true") {
+        alert("⚠️ Please login before checkout.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(product => {
+        const quantity = product.quantity || 1;
+        total += product.price * quantity;
+    });
+
+    const order = {
+        customerEmail: customerEmail,
+        customerName: customerName,
+        totalAmount: total,
+        status: "PLACED"
+    };
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/orders",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(order)
+            }
+        );
+
+        if (!response.ok) {
+            alert("❌ Order failed.");
+            return;
+        }
+
+        const savedOrder = await response.json();
+
+        alert(
+            "🎉 Order placed successfully!\n\n" +
+            "Order ID: " + savedOrder.id +
+            "\nTotal: ₹" + savedOrder.totalAmount
+        );
+
+        localStorage.removeItem("cart");
+
+        cart = [];
+
+        displayCart();
+
+    } catch (error) {
+
+        console.error("Checkout error:", error);
+
+        alert("❌ Cannot connect to backend.");
+    }
 }
 
 
