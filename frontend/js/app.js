@@ -124,6 +124,7 @@ if (response.ok) {
     console.log("Login successful:", data);
     localStorage.setItem("loggedIn", "true");
 localStorage.setItem("userName", data.name);
+localStorage.setItem("userRole", data.role);
 
     setTimeout(() => {
         window.location.href = "../index.html";
@@ -164,9 +165,10 @@ if (navAuth) {
         document.getElementById("logoutBtn").addEventListener("click", function (event) {
 
             event.preventDefault();
-
-            localStorage.removeItem("loggedIn");
-            localStorage.removeItem("userName");
+            
+localStorage.removeItem("loggedIn");
+localStorage.removeItem("userName");
+localStorage.removeItem("userRole");
 
             window.location.href = "index.html";
         });

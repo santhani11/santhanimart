@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const selectedCategory = urlParams.get("category");
+
 fetch("http://localhost:8080/api/products")
     .then(response => response.json())
     .then(products => {
@@ -6,7 +9,27 @@ fetch("http://localhost:8080/api/products")
 
         list.innerHTML = "";
 
-        products.forEach(product => {
+        let filteredProducts = products;
+
+        if (selectedCategory) {
+
+            filteredProducts = products.filter(
+                product =>
+                    product.category.toLowerCase() ===
+                    selectedCategory.toLowerCase()
+            );
+        }
+
+        if (filteredProducts.length === 0) {
+
+            list.innerHTML = `
+                <p>No products found in ${selectedCategory} category.</p>
+            `;
+
+            return;
+        }
+
+        filteredProducts.forEach(product => {
 
             list.innerHTML += `
                 <div class="product-card">
@@ -27,6 +50,25 @@ fetch("http://localhost:8080/api/products")
                         🛒 Add to Cart
                     </button>
 
+                    ${localStorage.getItem("userRole") === "ADMIN" ? `
+
+    <div style="margin-top:15px;">
+
+        <button onclick="changeStock(${product.id}, -1)">
+            ➖ Stock
+        </button>
+
+        <button onclick="changeStock(${product.id}, 1)">
+            ➕ Stock
+        </button>
+
+        <button onclick="deleteProduct(${product.id})">
+            🗑️ Remove
+        </button>
+
+    </div>
+
+` : ""}
                 </div>
             `;
         });
@@ -38,7 +80,6 @@ fetch("http://localhost:8080/api/products")
 
         console.log(error);
     });
-
 
 async function addToCart(product) {
 
@@ -86,6 +127,74 @@ async function addToCart(product) {
         console.error("Stock update error:", error);
 
         alert("❌ Cannot update stock. Please start Spring Boot.");
+
+    }
+}
+async function changeStock(id, amount) {
+
+    const action = amount === 1
+        ? "increase-stock"
+        : "decrease-stock";
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:8080/api/products/${id}/${action}`,
+            {
+                method: "PUT"
+            }
+        );
+
+        const message = await response.text();
+
+        if (!response.ok) {
+            alert("❌ " + message);
+            return;
+        }
+
+        location.reload();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("❌ Cannot update stock.");
+
+    }
+}
+
+async function deleteProduct(id) {
+
+    const confirmDelete =
+        confirm("Are you sure you want to remove this product?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:8080/api/products/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        const message = await response.text();
+
+        if (!response.ok) {
+            alert("❌ " + message);
+            return;
+        }
+
+        alert("🗑️ Product removed successfully!");
+
+        location.reload();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("❌ Cannot remove product.");
 
     }
 }

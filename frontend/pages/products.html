@@ -28,6 +28,30 @@
     <h1>Our Products</h1>
     <p>Explore products from SanthaniMart</p>
 
+    <div id="adminPanel" style="display:none;">
+
+    <h2>⚙️ Admin - Add Product</h2>
+
+    <input type="text" id="productName" placeholder="Product Name">
+
+    <input type="text" id="productDescription" placeholder="Description">
+
+    <input type="number" id="productPrice" placeholder="Price">
+
+    <input type="text" id="productCategory" placeholder="Category">
+
+    <input type="text" id="productImage" placeholder="Image URL">
+
+    <input type="number" id="productStock" placeholder="Stock">
+
+    <button onclick="addProduct()">
+        ➕ Add Product
+    </button>
+
+    <p id="adminMessage"></p>
+
+</div>
+
     <div id="productList" class="product-grid">
         <p>Loading products...</p>
     </div>
@@ -35,6 +59,73 @@
 </section>
 
 <script src="../js/products.js"></script>
+
+<script>
+
+const userRole = localStorage.getItem("userRole");
+
+if (userRole === "ADMIN") {
+    document.getElementById("adminPanel").style.display = "block";
+}
+
+async function addProduct() {
+
+    const product = {
+        name: document.getElementById("productName").value,
+        description: document.getElementById("productDescription").value,
+        price: document.getElementById("productPrice").value,
+        category: document.getElementById("productCategory").value,
+        image: document.getElementById("productImage").value,
+        stock: document.getElementById("productStock").value
+    };
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:8080/api/products",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(product)
+            }
+        );
+
+        if (response.ok) {
+
+            document.getElementById("adminMessage").textContent =
+                "✅ Product added successfully!";
+
+            document.getElementById("productName").value = "";
+            document.getElementById("productDescription").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("productCategory").value = "";
+            document.getElementById("productImage").value = "";
+            document.getElementById("productStock").value = "";
+
+            setTimeout(() => {
+                location.reload();
+            }, 800);
+
+        } else {
+
+            document.getElementById("adminMessage").textContent =
+                "❌ Failed to add product.";
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("adminMessage").textContent =
+            "❌ Cannot connect to backend.";
+
+    }
+}
+
+</script>
 
 </body>
 </html>

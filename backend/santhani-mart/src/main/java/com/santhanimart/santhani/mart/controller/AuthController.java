@@ -51,7 +51,7 @@ public class AuthController {
                 )
         );
     }
-    @PostMapping("/register")
+   @PostMapping("/register")
 public ResponseEntity<?> register(@RequestBody User user) {
 
     Optional<User> existingUser =
@@ -62,6 +62,9 @@ public ResponseEntity<?> register(@RequestBody User user) {
                 .badRequest()
                 .body(Map.of("message", "Email already registered"));
     }
+
+    // Every new registration is a normal USER
+    user.setRole("USER");
 
     User savedUser = userRepository.save(user);
 
