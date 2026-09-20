@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SanthaniMart - Orders</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 16px; }
+  input, button { padding: 8px; margin: 4px 0; width: 100%; box-sizing: border-box; }
+  .wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+  th, td { border: 1px solid #ccc; padding: 6px; text-align: left; font-size: 13px; }
+</style>
+</head>
+<body>
+<h2>Customer Orders (Admin)</h2>
+<input id="email" type="email" placeholder="Admin email">
+<input id="password" type="password" placeholder="Admin password">
+<button onclick="loadOrders()">Show orders</button>
+<p id="msg"></p>
+<div class="wrap">
+  <table>
+    <thead id="head"></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+async function loadOrders() {
+  const msg = document.getElementById("msg");
+  const head = document.getElementById("head");
+  const rows = document.getElementById("rows");
+  head.innerHTML = "";
+  rows.innerHTML = "";
+  msg.textContent = "Loading... the backend may take a minute to wake up.";
+  try {
+    const response = await fetch("https://santhanimart.onrender.com/api/admin/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value
+      })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      msg.textContent = data.message || ("Failed: " + response.status);
+      return;
+    }
+    msg.textContent = data.length + " order(s)";
+    const keys = [];
+    data.forEach(function (o) {
+      Object.keys(o).forEach(function (k) {
+        if (keys.indexOf(k) === -1) keys.push(k);
+      });
+    });
+    const hr = document.createElement("tr");
+    keys.forEach(function (k) {
+      const th = document.createElement("th");
+      th.textContent = k;
+      hr.appendChild(th);
+    });
+    head.appendChild(hr);
+    data.forEach(function (o) {
+      const tr = document.createElement("tr");
+      keys.forEach(function (k) {
+        const td = document.createElement("td");
+        td.textContent = o[k] === undefined || o[k] === null ? "" : o[k];
+        tr.appendChild(td);
+      });
+      rows.appendChild(tr);
+    });
+  } catch (e) {
+    msg.textContent = "Cannot connect to backend.";
+  }
+}
+</script>
+</body>
+</html>
