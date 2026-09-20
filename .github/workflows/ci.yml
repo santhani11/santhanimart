@@ -21,7 +21,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Make Maven Wrapper executable
+        working-directory: backend/santhani-mart
+        run: chmod +x mvnw
+
       - name: Build Backend
         working-directory: backend/santhani-mart
         run: ./mvnw clean test
-        
