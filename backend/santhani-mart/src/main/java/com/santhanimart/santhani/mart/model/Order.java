@@ -12,6 +12,10 @@ public class Order {
 
     private String customerEmail;
     private String customerName;
+    private String phone;
+    private String address;
+    private String city;
+    private String pincode;
     private double totalAmount;
     private String status;
 
@@ -19,9 +23,15 @@ public class Order {
     }
 
     public Order(String customerEmail, String customerName,
-                 double totalAmount, String status) {
+                 String phone, String address, String city,
+                 String pincode, double totalAmount, String status) {
+
         this.customerEmail = customerEmail;
         this.customerName = customerName;
+        this.phone = phone;
+        this.address = address;
+        this.city = city;
+        this.pincode = pincode;
         this.totalAmount = totalAmount;
         this.status = status;
     }
@@ -44,6 +54,38 @@ public class Order {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
     }
 
     public double getTotalAmount() {

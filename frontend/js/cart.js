@@ -1,4 +1,5 @@
 // SanthaniMart Cart
+console.log("CART JS LOADED");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -158,33 +159,105 @@ function saveCart() {
     displayCart();
 }
 
-async function checkout() {
+function checkout() {
 
-    if (cart.length === 0) {
-        alert("🛒 Your cart is empty!");
+    const email = localStorage.getItem("userEmail");
+    const name = localStorage.getItem("userName");
+
+    if (!email) {
+        alert("Please login before checkout.");
         return;
     }
 
-    const loggedIn = localStorage.getItem("loggedIn");
-    const customerEmail = localStorage.getItem("userEmail");
-    const customerName = localStorage.getItem("userName");
-
-    if (loggedIn !== "true") {
-        alert("⚠️ Please login before checkout.");
-        window.location.href = "login.html";
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
         return;
     }
 
     let total = 0;
 
     cart.forEach(product => {
-        const quantity = product.quantity || 1;
-        total += product.price * quantity;
+        total += product.price * (product.quantity || 1);
     });
 
+    cartItems.innerHTML += `
+        <div class="checkout-form">
+
+            <h2>📦 Delivery Details</h2>
+
+            <input
+                type="text"
+                id="checkoutName"
+                placeholder="Full Name"
+                value="${name || ""}"
+            >
+
+            <input
+                type="tel"
+                id="checkoutPhone"
+                placeholder="Phone Number"
+            >
+
+            <textarea
+                id="checkoutAddress"
+                placeholder="Delivery Address"
+            ></textarea>
+
+            <input
+                type="text"
+                id="checkoutCity"
+                placeholder="City"
+            >
+
+            <input
+                type="text"
+                id="checkoutPincode"
+                placeholder="Pincode"
+            >
+
+            <h3>Total: ₹${total}</h3>
+
+            <button onclick="placeOrder(${total})">
+                ✅ Place Order
+            </button>
+
+            <p id="checkoutMessage"></p>
+
+        </div>
+    `;
+}
+async function placeOrder(total) {
+
+    const email = localStorage.getItem("userEmail");
+
+    const name = document.getElementById("checkoutName").value.trim();
+    const phone = document.getElementById("checkoutPhone").value.trim();
+    const address = document.getElementById("checkoutAddress").value.trim();
+    const city = document.getElementById("checkoutCity").value.trim();
+    const pincode = document.getElementById("checkoutPincode").value.trim();
+
+    if (!name || !phone || !address || !city || !pincode) {
+        alert("Please fill all delivery details.");
+        return;
+    }
+
+    if (!/^[0-9+\-\s()]{7,15}$/.test(phone)) {
+    alert("Please enter a valid phone number.");
+    return;
+}
+
+    if (!/^[A-Za-z0-9\s-]{3,10}$/.test(pincode)) {
+    alert("Please enter a valid postal code.");
+    return;
+}
+
     const order = {
-        customerEmail: customerEmail,
-        customerName: customerName,
+        customerEmail: email,
+        customerName: name,
+        phone: phone,
+        address: address,
+        city: city,
+        pincode: pincode,
         totalAmount: total,
         status: "PLACED"
     };
@@ -202,32 +275,26 @@ async function checkout() {
             }
         );
 
-        if (!response.ok) {
-            alert("❌ Order failed.");
-            return;
+        if (response.ok) {
+
+            alert("✅ Order placed successfully!");
+
+            localStorage.removeItem("cart");
+
+            window.location.href = "orders.html";
+
+        } else {
+
+            alert("❌ Failed to place order.");
+
         }
-
-        const savedOrder = await response.json();
-
-        alert(
-            "🎉 Order placed successfully!\n\n" +
-            "Order ID: " + savedOrder.id +
-            "\nTotal: ₹" + savedOrder.totalAmount
-        );
-
-        localStorage.removeItem("cart");
-
-        cart = [];
-
-        displayCart();
 
     } catch (error) {
 
-        console.error("Checkout error:", error);
+        console.error("Order error:", error);
 
         alert("❌ Cannot connect to backend.");
     }
 }
-
 
 displayCart();

@@ -33,4 +33,11 @@ public class OrderController {
 
         return orderRepository.findByCustomerEmail(email);
     }
+
+    // Clear all orders of a customer
+    @DeleteMapping("/user/{email}")
+    public void clearOrders(@PathVariable String email) {
+
+        orderRepository.deleteByCustomerEmail(email);
+    }
 }

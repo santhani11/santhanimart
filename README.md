@@ -1,225 +1,383 @@
-### SanthaniMart
-Online Shopping Marketplace
+# SanthaniMart
 
-SanthaniMart is a full-stack online shopping marketplace application inspired by popular e-commerce platforms such as Amazon and Flipkart. The application provides a platform where buyers can browse and purchase products, sellers can manage their products, and administrators can manage the overall marketplace.
+## Online Shopping Marketplace
 
-The project is designed as a multi-role e-commerce system with separate functionalities for Buyer, Seller, and Admin.
+SanthaniMart is a full-stack e-commerce marketplace developed using Java, Spring Boot, MySQL, HTML, CSS, and JavaScript.
+
+The application allows users to register and log in, browse products, add products to a shopping cart, manage cart quantities, place orders, and view their order history.
+
+The project is inspired by modern e-commerce platforms such as Amazon and Flipkart.
+
+---
 
 ## Project Objective
 
-The main objective of SanthaniMart is to develop an easy-to-use online marketplace where:
+The main objective of SanthaniMart is to develop a simple and user-friendly online shopping marketplace where users can:
 
-Buyers can register, log in, search for products, add products to their cart, and place orders.
-Sellers can register, log in, add products, edit products, and delete products.
-Admins can manage users, orders, and inappropriate products.
-Buyers can view their order history and provide product reviews.
-## User Roles
-1. Buyer
+- Register and log in
+- Browse available products
+- View product details
+- Add products to the cart
+- Update cart quantities
+- Remove products from the cart
+- Checkout and place orders
+- View order history
 
-A Buyer can:
+The application also provides product management functionality for authorized users.
 
-Register an account
-Log in
-View available products
-Search for products
-Filter products by category
-Add products to the shopping cart
-Remove products from the cart
-Update product quantity
-View the total price
-Checkout and confirm an order
-View order history
-Give product ratings and comments
-2. Seller
+---
 
-A Seller can:
-
-Register an account
-Log in
-Add new products
-Edit existing products
-Delete products
-View orders received for their products
-3. Admin
-
-The Admin manages the marketplace and can:
-
-View all registered users
-View all orders
-Remove inappropriate products
-## Application Workflow
-                         SanthaniMart
-                              |
-              +---------------+---------------+
-              |               |               |
-            Buyer           Seller           Admin
-              |               |               |
-              ↓               ↓               ↓
-        Search Products   Add Products    Manage Users
-              |           Edit Products   View Orders
-              ↓           Delete Products Remove Products
-        View Products     View Orders
-              |
-              ↓
-         Add to Cart
-              |
-              ↓
-          Checkout
-              |
-              ↓
-        Confirm Order
-              |
-              ↓
-        Order History
-              |
-              ↓
-       Product Review
 ## Main Features
-User Registration & Login
 
-Buyers and sellers can create accounts and log in to the application. The system identifies the user's role and provides access to the appropriate dashboard.
+### User Authentication
 
-Product Management
+- User registration
+- User login
+- User logout
+- Session information stored using browser local storage
 
-Sellers can add, edit, and delete products from the marketplace.
+### Product Management
 
-Product Search
+- View available products
+- View product details
+- Add new products
+- Delete products
+- Display product price
+- Display product category
+- Display available stock
+- Product image support
 
-Buyers can search for products using the product name.
+### Shopping Cart
 
-Category Filtering
+Users can:
 
-Buyers can filter products based on their category.
+- Add products to cart
+- Increase product quantity
+- Remove products from cart
+- View total price
+- Manage cart items
 
-Shopping Cart
+### Stock Management
 
-Buyers can add products to the cart, remove products, update quantities, and view the total price.
+SanthaniMart maintains product stock during cart operations.
 
-Checkout
+When a product is added to the cart:
 
-Buyers can review their cart and confirm their order. No real payment gateway is required.
+`Stock → Decreases`
 
-Order History
+When a product is removed from the cart:
 
-Buyers can view their previous orders and their order status. Sellers can view orders received for their products.
+`Stock → Restored`
 
-## Admin Management
+This helps maintain correct product availability.
 
-The administrator can view users and orders and remove inappropriate products.
+### Checkout and Orders
 
-Product Reviews
+Users can:
 
-Buyers can provide ratings and comments for products.
+- Review cart items
+- Confirm an order
+- Place an order
+- View their order history
+
+### Categories
+
+Products can be organized according to categories such as:
+
+- Electronics
+- Fashion
+- Home
+
+---
+
+## Application Workflow
+
+```text
+                    SanthaniMart
+                         |
+              +----------+----------+
+              |                     |
+            User                 Products
+              |                     |
+        Register / Login       View Products
+              |                     |
+              ↓                     ↓
+          Home Page            Add to Cart
+                                    |
+                                    ↓
+                              Shopping Cart
+                                    |
+                                    ↓
+                                 Checkout
+                                    |
+                                    ↓
+                               Place Order
+                                    |
+                                    ↓
+                              Order History
+````
+
+---
 
 ## System Architecture
 
-SanthaniMart follows a layered application architecture:
+SanthaniMart follows a layered backend architecture.
 
-## Frontend
+```text
+Frontend
 HTML + CSS + JavaScript
+          |
           ↓
-Spring Boot Controller
+Spring Boot REST API
+          |
           ↓
-Service Layer
+Controller Layer
+          |
           ↓
 Repository Layer
+          |
           ↓
 MySQL Database
-Controller Layer
+```
 
-Handles incoming requests from the frontend and sends appropriate responses.
+### Controller Layer
 
-Service Layer
+Handles HTTP requests from the frontend and provides REST API endpoints.
 
-Contains the main business logic of the application.
+### Repository Layer
 
-Repository Layer
+Handles communication between the application and the MySQL database using Spring Data JPA.
 
-Handles communication between the application and the database.
+### Model Layer
 
-Model Layer
+Represents application entities such as users and products.
 
-Represents the entities and data used by the application.
+---
 
 ## Technology Stack
-Backend
-Java
-Spring Boot
-Spring Data JPA
-Frontend
-HTML
-CSS
-JavaScript
-Database
-MySQL
-Build Tool
-Maven Wrapper
-Version Control
-Git
-GitHub
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Backend
+
+* Java
+* Spring Boot
+* Spring Data JPA
+
+### Database
+
+* MySQL
+
+### Build Tool
+
+* Maven Wrapper
+
+### Version Control
+
+* Git
+* GitHub
+
+---
+
 ## Project Structure
+
+```text
 SanthaniMart/
 │
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── santhanimart/
-│   │   │           ├── controller/
-│   │   │           ├── service/
-│   │   │           ├── repository/
-│   │   │           ├── model/
-│   │   │           └── config/
-│   │   │
-│   │   └── resources/
-│   │       ├── static/
-│   │       │   ├── css/
-│   │       │   ├── js/
-│   │       │   └── images/
-│   │       │
-│   │       ├── templates/
-│   │       └── application.properties
+├── backend/
+│   └── santhani-mart/
+│       ├── src/
+│       │   └── main/
+│       │       ├── java/
+│       │       │   └── com/
+│       │       │       └── santhanimart/
+│       │       │           ├── controller/
+│       │       │           ├── repository/
+│       │       │           └── model/
+│       │       │
+│       │       └── resources/
+│       │
+│       ├── .mvn/
+│       ├── mvnw
+│       ├── mvnw.cmd
+│       └── pom.xml
 │
-├── .mvn/
-├── mvnw
-├── mvnw.cmd
-├── pom.xml
+├── frontend/
+│   ├── css/
+│   ├── js/
+│   └── pages/
+│
 └── README.md
+```
+
+---
+
 ## Database
 
-The application uses MySQL to store and manage marketplace data.
+SanthaniMart uses MySQL for persistent application data.
 
-The planned database entities include:
+### Current Database
 
-Users
-Products
-Categories
-Cart
-Cart Items
-Orders
-Order Items
-Reviews
+```text
+Database: santhanimart
+```
 
-The Users entity supports three roles:
+### Main Data
 
-BUYER
-SELLER
-ADMIN
+* Users
+* Products
+* Orders
+* Order Items
+
+The database is connected to the Spring Boot backend using Spring Data JPA.
+
+---
+
+## API Endpoints
+
+### Authentication
+
+```text
+POST /api/auth/register
+POST /api/auth/login
+```
+
+### Products
+
+```text
+GET    /api/products
+GET    /api/products/{id}
+POST   /api/products
+DELETE /api/products/{id}
+```
+
+### Stock Management
+
+```text
+PUT /api/products/{id}/decrease-stock
+PUT /api/products/{id}/increase-stock
+```
+
+### Orders
+
+```text
+GET /api/orders/{email}
+```
+
+---
+
 ## Security
 
-The application will include basic authentication and role-based access so that users can access the features appropriate to their role.
+The application includes basic user authentication.
 
-For example:
+Security considerations include:
 
-BUYER  → Buyer Features
-SELLER → Seller Features
-ADMIN  → Admin Features
+* User authentication
+* Restricted product-management functionality
+* Database-backed user accounts
+* API access control
+* Validation of user inputs
+* Protection of sensitive configuration values
+* No database passwords or secrets should be committed to the public repository
+
+---
+
+## Deployment
+
+SanthaniMart is deployed as part of the project submission.
+
+### Public URL
+
+```text
+[ADD DEPLOYED URL HERE]
+```
+
+The deployed application should be tested for:
+
+* User registration
+* Login
+* Product viewing
+* Cart operations
+* Checkout
+* Order history
+* Backend API connectivity
+
+---
+
+## Testing
+
+The project is tested for important application workflows including:
+
+* User registration
+* User login
+* Product loading
+* Add to cart
+* Cart quantity update
+* Stock decrease
+* Cart item removal
+* Stock restoration
+* Order placement
+* Order history
+
+---
+
+## CI Tests
+
+Continuous Integration is used to automatically build and test the backend whenever changes are pushed to the repository.
+
+---
+
+## Screenshots
+
+Screenshots of the working application are included in the project documentation.
+
+### Home Page
+
+Add screenshot here.
+
+### Login / Register
+
+Add screenshot here.
+
+### Products
+
+Add screenshot here.
+
+### Categories
+
+Add screenshot here.
+
+### Shopping Cart
+
+Add screenshot here.
+
+### Orders
+
+Add screenshot here.
+
+### Deployed Application
+
+Add screenshot here.
+
+---
+
 ## Future Enhancements
 
-After completing the core marketplace features, additional features can be added, such as:
+Possible future improvements include:
 
-Wishlist
-Order Tracking
-Sales Dashboard
-AI Chatbot
-Online Deployment
+* Wishlist
+* Advanced search
+* Advanced category filtering
+* Product reviews and ratings
+* Order tracking
+* Seller dashboard
+* Admin dashboard
+* Sales analytics
+* AI chatbot
+* Online payment gateway
+
+---
