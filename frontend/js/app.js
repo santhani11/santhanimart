@@ -62,7 +62,7 @@ if (registerForm) {
             } else {
 
                 message.textContent =
-                    data.message || "Registration failed.";
+                    data.message || ("Registration failed: " + response.status + " " + JSON.stringify(data));
 
             }
 
