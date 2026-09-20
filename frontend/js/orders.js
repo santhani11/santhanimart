@@ -9,7 +9,7 @@ if (!email) {
 
 } else {
 
-    fetch(`http://localhost:8080/api/orders/${email}`)
+    fetch(`https://santhanimart.onrender.com/api/orders/${email}`)
         .then(response => {
 
             if (!response.ok) {
@@ -111,7 +111,7 @@ async function clearOrderHistory() {
     try {
 
         const response = await fetch(
-            `http://localhost:8080/api/orders/user/${email}`,
+            `https://santhanimart.onrender.com/api/orders/user/${email}`,
             {
                 method: "DELETE"
             }
