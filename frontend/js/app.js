@@ -33,7 +33,7 @@ if (registerForm) {
         try {
 
             const response = await fetch(
-                "https://santhanimart.onrender.com",
+                "https://santhanimart.onrender.com/api/auth/register",
                 {
                     method: "POST",
                     headers: {
