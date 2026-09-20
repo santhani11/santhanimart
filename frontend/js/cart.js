@@ -125,7 +125,7 @@ async function removeFromCart(index) {
         for (let i = 0; i < quantity; i++) {
 
             const response = await fetch(
-                `http://localhost:8080/api/products/${product.id}/increase-stock`,
+                `https://santhanimart.onrender.com/api/products/${product.id}/increase-stock`,
                 {
                     method: "PUT"
                 }
@@ -265,7 +265,7 @@ async function placeOrder(total) {
     try {
 
         const response = await fetch(
-            "http://localhost:8080/api/orders",
+            "https://santhanimart.onrender.com/api/orders",
             {
                 method: "POST",
                 headers: {
