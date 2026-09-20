@@ -102,7 +102,7 @@ if (loginForm) {
         try {
 
             const response = await fetch(
-                "https://santhanimart.onrender.com",
+                "https://santhanimart.onrender.com/api/auth/login",
                 {
                     method: "POST",
                     headers: {
