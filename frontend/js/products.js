@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get("category");
 
-fetch("http://localhost:8080/api/products")
+fetch("https://santhanimart.onrender.com/api/products")
     .then(response => response.json())
     .then(products => {
 
@@ -86,7 +86,7 @@ async function addToCart(product) {
     try {
 
         const response = await fetch(
-            `http://localhost:8080/api/products/${product.id}/decrease-stock`,
+            `https://santhanimart.onrender.com/api/products/${product.id}/decrease-stock`,
             {
                 method: "PUT"
             }
@@ -139,7 +139,7 @@ async function changeStock(id, amount) {
     try {
 
         const response = await fetch(
-            `http://localhost:8080/api/products/${id}/${action}`,
+            `https://santhanimart.onrender.com/api/products/${id}/${action}`,
             {
                 method: "PUT"
             }
@@ -174,7 +174,7 @@ async function deleteProduct(id) {
     try {
 
         const response = await fetch(
-            `http://localhost:8080/api/products/${id}`,
+            `https://santhanimart.onrender.com/api/products/${id}`,
             {
                 method: "DELETE"
             }
