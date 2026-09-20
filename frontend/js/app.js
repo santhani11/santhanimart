@@ -33,7 +33,7 @@ if (registerForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:8080/api/auth/register",
+                "https://santhanimart.onrender.com",
                 {
                     method: "POST",
                     headers: {
@@ -102,7 +102,7 @@ if (loginForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:8080/api/auth/login",
+                "https://santhanimart.onrender.com",
                 {
                     method: "POST",
                     headers: {
