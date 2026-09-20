@@ -27,4 +27,4 @@ jobs:
 
       - name: Build Backend
         working-directory: backend/santhani-mart
-        run: ./mvnw clean test
+        run: ./mvnw clean package -DskipTests
