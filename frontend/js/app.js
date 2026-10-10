@@ -1,3 +1,25 @@
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".btn, .product-btn");
+  if (!btn) return;
+  const circle = document.createElement("span");
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  circle.style.width = circle.style.height = size + "px";
+  circle.style.left = (e.clientX - rect.left - size / 2) + "px";
+  circle.style.top = (e.clientY - rect.top - size / 2) + "px";
+  circle.className = "ripple-effect";
+  btn.appendChild(circle);
+  setTimeout(function () { circle.remove(); }, 600);
+});
+
+window.addEventListener("scroll", function () {
+  const hero = document.querySelector(".hero-content");
+  if (hero) {
+    const y = window.scrollY;
+    hero.style.transform = "translateY(" + Math.min(y * 0.08, 40) + "px)";
+    hero.style.opacity = Math.max(1 - y / 500, 0.3);
+  }
+}, { passive: true });
 function initReveal(selector) {
   const items = document.querySelectorAll(selector);
   const observer = new IntersectionObserver(function (entries) {
