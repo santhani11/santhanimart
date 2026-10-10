@@ -13,9 +13,15 @@
 
 <header class="navbar">
 
-    <div class="logo">
-        🛒 SanthaniMart
-    </div>
+    <a href="index.html" class="logo">
+        <span class="logo-mark">S</span>
+        <span class="logo-text">SanthaniMart<small>Shop Smart. Live Better.</small></span>
+    </a>
+
+    <form class="navbar-search" onsubmit="return goToSearch(event)">
+        <input type="text" id="searchBox" placeholder="Search for products, brands and more">
+        <button type="submit">🔍</button>
+    </form>
 
     <nav>
     <a href="index.html">Home</a>
