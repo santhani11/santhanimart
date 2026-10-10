@@ -20,6 +20,11 @@ fetch("https://santhanimart.onrender.com/api/products")
                     selectedCategory.toLowerCase()
             );
         }
+        if (searchTerm) {
+  filteredProducts = filteredProducts.filter(
+    product => product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+        }
 
         if (filteredProducts.length === 0) {
 
