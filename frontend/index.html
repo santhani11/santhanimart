@@ -191,9 +191,9 @@ async function loadFeaturedProducts() {
     }
     const featured = products.slice(0, 6);
     container.innerHTML = "";
-    featured.forEach(function (product, index) {
+    featured.forEach(function (product) {
       const card = document.createElement("div");
-      card.className = "product-card reveal-hidden";
+      card.className = "product-card";
       card.innerHTML = `
         <div class="product-image">
           ${product.image ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : "🛍️"}
@@ -203,8 +203,8 @@ async function loadFeaturedProducts() {
         <button class="product-btn" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
       `;
       container.appendChild(card);
-      setTimeout(function () { card.classList.add("reveal-show"); }, index * 90);
     });
+    if (typeof initReveal === "function") initReveal("#featuredProducts .product-card");
   } catch (e) {
     container.innerHTML = "<p style='color:#777;'>Unable to load products. The server may be waking up — try refreshing in a minute.</p>";
   }
