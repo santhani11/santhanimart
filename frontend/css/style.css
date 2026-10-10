@@ -613,3 +613,111 @@ footer p {
     line-height: 1.5;
     margin: 0;
 }
+/* ============================
+   PREMIUM REDESIGN ADD-ONS
+   ============================ */
+
+:root {
+  --santhani-purple: #6c4ab6;
+  --santhani-purple-dark: #4b2e85;
+  --santhani-gold: #e4b94f;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  height: auto;
+  min-height: 70px;
+  padding: 12px 7%;
+  border-bottom: 1px solid #ece4fb;
+  box-shadow: 0 4px 20px rgba(76, 32, 128, 0.07);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none !important;
+  color: #1c1326;
+  flex-shrink: 0;
+}
+.logo:hover { text-decoration: none !important; }
+
+.logo-mark {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--santhani-purple), var(--santhani-purple-dark));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 19px;
+  box-shadow: 0 6px 14px rgba(76, 32, 128, 0.35);
+}
+
+.logo-text {
+  display: flex; flex-direction: column; line-height: 1.1;
+  font-weight: 800; font-size: 21px; color: #221633;
+}
+.logo-text small {
+  font-weight: 500; font-size: 10.5px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--santhani-gold); margin-top: 2px;
+}
+
+.navbar-search {
+  display: flex; align-items: center;
+  flex: 1 1 320px; max-width: 560px;
+  background: #f6f2ff; border: 1.5px solid #e4d9fb;
+  border-radius: 30px; padding: 4px 4px 4px 18px; order: 3;
+}
+.navbar-search input {
+  flex: 1; border: none; background: transparent; outline: none;
+  font-size: 14.5px; color: #2a1a40; padding: 8px 0;
+}
+.navbar-search button {
+  border: none; background: var(--santhani-purple); color: #fff;
+  width: 38px; height: 38px; border-radius: 50%; font-size: 15px;
+  cursor: pointer; transition: 0.25s; flex-shrink: 0;
+}
+.navbar-search button:hover { background: var(--santhani-purple-dark); transform: scale(1.05); }
+
+@media (max-width: 600px) {
+  .navbar-search { order: 4; flex: 1 1 100%; max-width: 100%; }
+}
+
+.offers-zone { padding: 55px 7%; background: linear-gradient(180deg, #faf7ff, #ffffff); text-align: center; }
+.offers-heading h2 { font-size: 30px; color: #221633; margin-bottom: 6px; }
+.offers-container { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
+
+.offer-card {
+  flex: 1 1 280px; max-width: 340px; border-radius: 18px; padding: 30px 26px;
+  text-align: left; color: #fff; box-shadow: 0 14px 30px rgba(40, 20, 70, 0.18);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.offer-card:hover { transform: translateY(-8px); box-shadow: 0 20px 38px rgba(40, 20, 70, 0.26); }
+.offer-purple { background: linear-gradient(135deg, #7a53c9, #4b2e85); }
+.offer-gold { background: linear-gradient(135deg, #caa24a, #8a6a1f); }
+.offer-dark { background: linear-gradient(135deg, #2f2340, #15101f); }
+
+.offer-tag {
+  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4);
+  padding: 5px 12px; border-radius: 20px; font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.8px; margin-bottom: 14px;
+}
+.offer-card h3 { font-size: 22px; margin: 0 0 8px; }
+.offer-card p { font-size: 14px; opacity: 0.9; margin-bottom: 18px; }
+.offer-link { color: #fff; font-weight: 700; text-decoration: none; font-size: 14px; border-bottom: 2px solid rgba(255,255,255,0.6); padding-bottom: 2px; }
+.offer-link:hover { border-color: #fff; }
+
+.hero { background: radial-gradient(circle at 30% 20%, #efe6ff 0%, #ffffff 55%); }
+
+.category-card, .product-card, .categories-section .category-card, .product-grid .product-card { border-radius: 16px !important; }
+.category-card:hover, .product-card:hover { box-shadow: 0 16px 32px rgba(76, 32, 128, 0.14) !important; }
+
+footer { position: relative; }
+footer::before {
+  content: ""; display: block; height: 3px;
+  background: linear-gradient(90deg, var(--santhani-purple), var(--santhani-gold), var(--santhani-purple));
+  margin-bottom: 25px;
+}
