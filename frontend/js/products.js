@@ -1,5 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get("category");
+const searchTerm = urlParams.get("search");
 
 fetch("https://santhanimart.onrender.com/api/products")
     .then(response => response.json())
