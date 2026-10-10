@@ -1,3 +1,21 @@
+function initReveal(selector) {
+  const items = document.querySelectorAll(selector);
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(function (item) {
+    item.classList.add("reveal-hidden");
+    observer.observe(item);
+  });
+}
+document.addEventListener("DOMContentLoaded", function () {
+  initReveal(".category-card, .offer-card, .feature-card");
+});
 function goToSearch(e) {
   e.preventDefault();
   const term = document.getElementById("searchBox").value.trim();
