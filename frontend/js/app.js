@@ -4,7 +4,8 @@ function initReveal(selector) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add("reveal-show");
-        observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove("reveal-show");
       }
     });
   }, { threshold: 0.15 });
@@ -14,7 +15,7 @@ function initReveal(selector) {
   });
 }
 document.addEventListener("DOMContentLoaded", function () {
-  initReveal(".category-card, .offer-card, .feature-card");
+  initReveal(".category-card, .offer-card, .feature-card, .trust-item");
 });
 function goToSearch(e) {
   e.preventDefault();
