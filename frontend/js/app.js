@@ -1,3 +1,9 @@
+function goToSearch(e) {
+  e.preventDefault();
+  const term = document.getElementById("searchBox").value.trim();
+  window.location.href = "pages/products.html" + (term ? "?search=" + encodeURIComponent(term) : "");
+  return false;
+}
 // SanthaniMart Frontend
 console.log("SanthaniMart frontend loaded.");
 // Registration
